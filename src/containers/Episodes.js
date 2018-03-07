@@ -3,7 +3,8 @@ import Episodes from 'components/Episodes';
 
 const mapStateToProps = state => {
   return {
-    episodes: state.episodes
+    episodes: state.episodes,
+    searchedShow: state.searchedShow
   }
 }
 export default connect(mapStateToProps, undefined)(Episodes);

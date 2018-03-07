@@ -11,7 +11,7 @@ export const searchShow = (searchParam) => (
     }
   })
     .then(response => {
-      let result = response.data.Episodes;
+      let result = response.data;
       return result;
     })
 )

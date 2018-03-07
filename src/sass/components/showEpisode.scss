@@ -1,0 +1,41 @@
+.episodes{
+  width:65%;
+  min-height: 100vh;
+  border: 1px solid #f6f6f5;
+  margin: 18px 0 5px 20px;
+  padding: 17px 0 8px 15px;
+  border-radius: 9px
+}
+.rating_star{
+  color: #f3ce00;
+}
+.episodeDescription{
+  margin-left: 19px;
+}
+.rating{
+  margin-left: 3px;
+  font-size: 11px;
+}
+.title{
+  color:#136CB2;
+}
+.episodeText{
+  font-size: 11px;
+  color: rgba(0,0,0,0.6);
+}
+.plot{
+  margin-top: 10px;
+  font-size: 11px;
+}
+.releaseTime{
+  font-size: 11px;
+  margin-left: 30px;
+}
+.hideButton{
+  font-size: 11px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+.episodeDisplay{
+  padding: 10px 5px 19px 14px
+}

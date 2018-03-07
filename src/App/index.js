@@ -4,9 +4,12 @@ import { SearchShow, Episodes } from 'containers';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <SearchShow />  
-        <Episodes />
+      <div className="app">
+        <div className="divider"></div>
+        <div className="content">  
+          <SearchShow />
+          <Episodes />
+        </div>
       </div>
     );
   }
