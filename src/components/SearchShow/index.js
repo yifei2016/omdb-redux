@@ -17,7 +17,7 @@ class SearchShow extends Component {
       this.setState({
         value: 'Silicon Valley'
       }, () => {
-        reject(new Error('fail'))
+        resolve('Success!')
       })
     });
     promise.then((str) => { 
