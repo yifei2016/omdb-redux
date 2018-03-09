@@ -13,3 +13,13 @@ export const setEpisodes = (body) => ({
   type: 'SET_EPISODES',
   body
 });
+export const displaySpinner = () => ({
+  type: 'DISPLAY_SPINNER'
+});
+export const hideSpinner = () => ({
+  type: 'HIDE_SPINNER'
+});
+export const showError = (body) => ({
+  type: 'SHOW_ERROR',
+  body
+});

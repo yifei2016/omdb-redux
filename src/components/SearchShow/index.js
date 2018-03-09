@@ -5,7 +5,6 @@ class SearchShow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: 'none',
       value: ''
     }
     this.search = this.search.bind(this);
@@ -18,14 +17,14 @@ class SearchShow extends Component {
       this.setState({
         value: 'Silicon Valley'
       }, () => {
-        resolve('Success!')
+        reject(new Error('fail'))
       })
     });
     promise.then((str) => { 
         this.search();
       })
       .catch(error => {
-        error.message
+        this.props.showError(error.message)
       })
   }
   handleInput(ev) {
@@ -34,9 +33,9 @@ class SearchShow extends Component {
     });
   }
   search() {
-    this.setState({ loading: false, display: 'block' })
+    this.setState({ loading: false })
     this.props.emptyEpisode();
-    console.log('!!!!!!!!!!!!!', this.state.value)
+    this.props.displaySpinner();
     searchShow(this.state.value)
       .then(result => { 
         if (result === undefined)
@@ -52,27 +51,19 @@ class SearchShow extends Component {
             });
           return promise;
         });
-
-        // result.Episodes.forEach(e => {
-        //   let promise = getEpisode(e.imdbID)
-        //     .then(episode => {
-        //       if (episode === undefined) throw new Error(`Error`);
-        //       // return Promise.resolve(episode.data);
-        //       return episode.data;
-        //     });
-        //   episodes.push(promise)
-        // });
+        // episodes is array of promises, Promise.all(iterable) method returns a single Promise
         return Promise.all(episodes)
       })
       .then(dataArray => { 
         this.props.setEpisodes(dataArray);
+        this.props.hideSpinner();
       })
       .catch(error => {
-        this.setState({ error: error.message, display: 'none' })
+        this.props.showError(error.message)
       })
-      .finally(() => {
-        this.setState({ display: 'none' })
-     })
+    //   .finally(() => {
+    //     this.setState({ display: 'none' })
+    //  })
   }
   render() {
     return (

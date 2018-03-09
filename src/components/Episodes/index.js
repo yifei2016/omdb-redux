@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ShowEpisode from 'components/ShowEpisode';
 
 class Episodes extends Component {
-  
   render() {
     let sum = 0;
     let averageRating = null;
@@ -14,11 +13,17 @@ class Episodes extends Component {
         averageRating = <p><i className="fa fa-star fa-lg rating_star" aria-hidden="true"></i> {(sum / this.props.episodes.length).toFixed(2)}</p>  
       }
     }
+
     let i = 0;
-    
     return (
       <div className="episodes">
         <div>
+          <div style={{ width: '34px' }}>
+            <i className="fa fa-spinner fa-spin" style={{display: this.props.spinner, fontSize: '34px'}}></i>
+          </div>
+          <div>
+            {this.props.error}
+          </div>
           <h3>{this.props.searchedShow}</h3>
           <span>{averageRating}</span>
         </div>  

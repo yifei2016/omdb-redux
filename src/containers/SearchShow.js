@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {addEpisode, setEpisodes, searchedShow, emptyEpisode} from 'redux/actions';
+import {addEpisode, setEpisodes, searchedShow, displaySpinner, hideSpinner, showError, emptyEpisode} from 'redux/actions';
 import SearchShow from 'components/SearchShow';
 
 const mapDispatchToProps = dispatch => {
@@ -15,6 +15,15 @@ const mapDispatchToProps = dispatch => {
     },
     emptyEpisode: () => { 
       dispatch(emptyEpisode());
+    },
+    displaySpinner: () => { 
+      dispatch(displaySpinner());
+    },
+    hideSpinner: () => { 
+      dispatch(hideSpinner());
+    },
+    showError: (error) => { 
+      dispatch(showError(error));
     }
   }
 }
