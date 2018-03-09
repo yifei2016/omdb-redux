@@ -9,3 +9,7 @@ export const searchedShow = (body) => ({
 export const emptyEpisode = () => ({
   type: 'EMPTY_EPISODE'
 });
+export const setEpisodes = (body) => ({
+  type: 'SET_EPISODES',
+  body
+});
