@@ -1,4 +1,6 @@
-const spinner = (state = 'none', action) => {
+export const initialState = 'none';
+
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "DISPLAY_SPINNER":
       return 'block';
@@ -9,5 +11,5 @@ const spinner = (state = 'none', action) => {
   }
 }
 
-export default spinner;
+export default reducer;
 

@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore, compose} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
-import reducer from 'redux/reducers';
+import { reducers, initialState} from 'redux/reducers';
 import './sass/index.css';
 
 import App from "./App";
@@ -10,7 +10,21 @@ const enhancers = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-const store = createStore(reducer, enhancers);
+const loggingMiddleware = (store) => (next) => (action) => {
+  console.log(`redux log:`, action);
+  next(action);
+}
+
+const store = createStore(
+  reducers,
+  initialState,
+  applyMiddleware(
+    loggingMiddleware
+  ),
+  enhancers
+);
+
+
 ReactDOM.render(
   <Provider store={store}>
     <App/>

@@ -1,14 +1,21 @@
 import {combineReducers} from 'redux';
-import episodes from './episodes';
-import spinner from './spinner';
-import error from './error';
-import searchedShow from './searchedShow';
+import * as episodes from './episodes';
+import * as spinner from './spinner';
+import * as error from './error';
+import * as searchedShow from './searchedShow';
 
-const TvShow = combineReducers({
-  episodes,
-  searchedShow,
-  spinner,
-  error
+export const reducers = combineReducers({
+  episodes: episodes.reducer,
+  searchedShow: searchedShow.reducer,  
+  spinner: spinner.reducer,
+  error: error.reducer
 })
 
-export default TvShow;
+export const initialState = {
+  episodes: episodes.initialState,
+  searchedShow: searchedShow.initialState,
+  spinner: spinner.initialState,
+  error: error.initialState
+}
+
+export default reducers;

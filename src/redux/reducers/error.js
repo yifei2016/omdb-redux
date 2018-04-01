@@ -1,4 +1,6 @@
-const error = (state = '', action) => {
+export const initialState = '';
+
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SHOW_ERROR":  
       return action.body;
@@ -7,5 +9,5 @@ const error = (state = '', action) => {
   }
 }
 
-export default error;
+export default reducer;
 

@@ -1,4 +1,6 @@
-const searchedShow = (state = 'Silicon Valley', action) => {
+export const initialState = 'Silicon Valley';
+
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SEARCHED_SHOW":
       return action.body;
@@ -7,5 +9,5 @@ const searchedShow = (state = 'Silicon Valley', action) => {
   }
 }
 
-export default searchedShow;
+export default reducer;
 

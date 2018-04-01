@@ -1,4 +1,6 @@
-const episodes = (state = [], action) => {
+export const initialState = [];
+
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_EPISODE":  
       return state.concat(action.body);
@@ -11,5 +13,5 @@ const episodes = (state = [], action) => {
   }
 }
 
-export default episodes;
+export default reducer;
 
