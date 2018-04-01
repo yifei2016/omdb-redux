@@ -4,6 +4,7 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import { reducers, initialState} from 'redux/reducers';
 import './sass/index.css';
+import { apiMiddleware } from 'searchShow/api.js';
 
 import App from "./App";
 const enhancers = compose(
@@ -12,14 +13,15 @@ const enhancers = compose(
 
 const loggingMiddleware = (store) => (next) => (action) => {
   console.log(`redux log:`, action);
-  next(action);
+  return next(action);
 }
 
 const store = createStore(
   reducers,
   initialState,
   applyMiddleware(
-    loggingMiddleware
+    loggingMiddleware,
+    apiMiddleware
   ),
   enhancers
 );

@@ -24,7 +24,7 @@ class Episodes extends Component {
           <div>
             {this.props.error}
           </div>
-          <h3>{this.props.searchedShow}</h3>
+          <h3>{this.props.searchedParam}</h3>
           <span>{averageRating}</span>
         </div>  
         

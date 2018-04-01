@@ -4,7 +4,8 @@ import Episodes from 'components/Episodes';
 const mapStateToProps = state => {
   return {
     episodes: state.episodes,
-    searchedShow: state.searchedShow,
+    searchEpisodes: state.searchEpisodes,
+    searchedParam: state.searchedParam,
     spinner: state.spinner,
     error: state.error
   }

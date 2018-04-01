@@ -34,36 +34,8 @@ class SearchShow extends Component {
   }
   search() {
     this.setState({ loading: false })
-    this.props.emptyEpisode();
-    this.props.displaySpinner();
-    searchShow(this.state.value)
-      .then(result => { 
-        if (result === undefined)
-          throw new Error(`No result found`)
-        this.props.searchedShow(result.Title);
-        
-        let episodes = result.Episodes.map(e => {
-          let promise = getEpisode(e.imdbID)
-            .then(episode => {
-              if (episode === undefined) throw new Error(`Error`);
-              // return Promise.resolve(episode.data);
-              return episode.data;
-            });
-          return promise;
-        });
-        // episodes is array of promises, Promise.all(iterable) method returns a single Promise
-        return Promise.all(episodes)
-      })
-      .then(dataArray => { 
-        this.props.setEpisodes(dataArray);
-        this.props.hideSpinner();
-      })
-      .catch(error => {
-        this.props.showError(error.message)
-      })
-    //   .finally(() => {
-    //     this.setState({ display: 'none' })
-    //  })
+   
+    this.props.searchEpisodes(this.state.value);
   }
   render() {
     return (

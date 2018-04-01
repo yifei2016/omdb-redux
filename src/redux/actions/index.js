@@ -2,8 +2,16 @@ export const addEpisode = (body) => ({
   type: 'ADD_EPISODE',
   body
 });
-export const searchedShow = (body) => ({
+export const searchEpisodes = (body) => ({
   type: 'SEARCHED_SHOW',
+  body,
+  meta: {
+    type: 'api',
+    url: 'http://www.omdbapi.com/'
+  }
+});
+export const searchedParam = (body) => ({
+  type: 'SEARCHED_PARAM',
   body
 });
 export const emptyEpisode = () => ({
