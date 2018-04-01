@@ -4,24 +4,20 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import { reducers, initialState} from 'redux/reducers';
 import './sass/index.css';
-import { apiMiddleware } from 'searchShow/api.js';
+import {searchEpisodeApiMiddleware, loggingMiddleware} from 'middleware';
 
 import App from "./App";
 const enhancers = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-const loggingMiddleware = (store) => (next) => (action) => {
-  console.log(`redux log:`, action);
-  return next(action);
-}
 
 const store = createStore(
   reducers,
   initialState,
   applyMiddleware(
     loggingMiddleware,
-    apiMiddleware
+    searchEpisodeApiMiddleware
   ),
   enhancers
 );

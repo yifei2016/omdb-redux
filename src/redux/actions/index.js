@@ -6,7 +6,7 @@ export const searchEpisodes = (body) => ({
   type: 'SEARCHED_SHOW',
   body,
   meta: {
-    type: 'api',
+    type: 'api_searchEpisode',
     url: 'http://www.omdbapi.com/'
   }
 });
