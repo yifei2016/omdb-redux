@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addEpisode, setEpisodes, searchEpisodes } from 'redux/actions';
+import { addEpisode, setEpisodes, searchEpisodes, searchEpisodesThunk } from 'redux/actions';
 import SearchShow from 'components/SearchShow';
 
 const mapDispatchToProps = dispatch => {
@@ -12,6 +12,9 @@ const mapDispatchToProps = dispatch => {
     },
     searchEpisodes: (show) => { 
       dispatch(searchEpisodes(show));
+    },
+    searchEpisodesThunk: (show) => { 
+      dispatch(searchEpisodesThunk(show));
     }
   }
 }

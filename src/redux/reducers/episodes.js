@@ -10,7 +10,7 @@ export const reducer = (state = initialState, action) => {
       return action.payload;
     case SEARCH_EPISODES_REQUEST:
       return {...state,  loading: true, data: [], error: null} 
-    case SEARCH_EPISODES_SUCCESS:  
+    case SEARCH_EPISODES_SUCCESS:   
       return {...state, loading: false, data: action.payload, error: null};
     case SEARCH_EPISODES_FAILURE:
       return {...state, loading: false, data: [], error: action.payload }

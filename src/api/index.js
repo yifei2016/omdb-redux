@@ -1,7 +1,8 @@
 import axios from 'axios';
+const API_BASE_URL = 'http://www.omdbapi.com/';
 
-export const searchShow = (url,searchParam) => (
-  axios.get(url, {
+export const searchShow = (searchParam) => (
+  axios.get(API_BASE_URL, {
     params: {
       apikey: '541531cc',
       t: searchParam,
@@ -14,8 +15,8 @@ export const searchShow = (url,searchParam) => (
     })
 )
 
-export const getEpisode = (url,searchParam) => (
-  axios.get(url, {
+export const getEpisode = (searchParam) => (
+  axios.get(API_BASE_URL, {
     params: {
       apikey: '541531cc',
       i: searchParam,

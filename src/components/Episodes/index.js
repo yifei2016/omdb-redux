@@ -12,8 +12,10 @@ class Episodes extends Component {
       sum = this.props.episodes.data.map(episode => {
         return +episode.imdbRating
       }).reduce((x, y) => x + y, 0);
-      if (this.props.episodes.length !== 0) { 
-        averageRating = <p><i className="fa fa-star fa-lg rating_star" aria-hidden="true"></i> {(sum / this.props.episodes.length).toFixed(2)}</p>  
+      if (this.props.episodes.data.length !== 0) { 
+        averageRating = <p>
+          <i className="fa fa-star fa-lg rating_star" aria-hidden="true"></i>
+          {(sum / this.props.episodes.data.length).toFixed(2)}</p>  
       }
     }
 

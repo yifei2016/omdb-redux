@@ -1,5 +1,5 @@
 import { CALL_API } from 'redux-api-middleware';
-import { getEpisode } from 'api';
+import * as api from 'api';
 
 export const addEpisode = (body) => ({
   type: 'ADD_EPISODE',
@@ -36,3 +36,22 @@ export const searchEpisodes = (searchedParam) => ({
     headers: { 'Accept': 'application/json' }
   }
 });
+
+export const searchEpisodesThunk = (query) => {
+  return (dispatch) => {
+    dispatch({ type: 'SEARCH_EPISODES_REQUEST' })
+    return api.searchShow(query)
+      .then(res => {
+        return res.Episodes
+          .map(episode => episode.imdbID)
+          .map(id => { 
+          return api.getEpisode(id)
+        })
+      })
+      .then(promise => Promise.all(promise))
+      .then(result => result.map(episode => episode.data))
+      .then(result => dispatch({ type: 'SEARCH_EPISODES_SUCCESS', payload: result }))
+      .catch(error => dispatch({type: 'SEARCH_EPISODES_FAILURE', payload: error}))
+  }
+};
+

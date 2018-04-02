@@ -35,7 +35,8 @@ class SearchShow extends Component {
   search() {
     this.setState({ loading: false })
    
-    this.props.searchEpisodes(this.state.value);
+    // this.props.searchEpisodes(this.state.value);
+    this.props.searchEpisodesThunk(this.state.value);
   }
   render() {
     return (
