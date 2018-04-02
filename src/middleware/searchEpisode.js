@@ -7,13 +7,12 @@ export const searchEpisodeApiMiddleware = (store) => (next) => (action) => {
   
   const { url } = action.meta;
   
-  const emptyEpisodeAction = emptyEpisode();
-  const displaySpinnerAction = displaySpinner();
+  
   const searchedParamAction = searchedParam(action.body);
-  store.dispatch(emptyEpisodeAction);
-  store.dispatch(displaySpinnerAction);
-  store.dispatch(searchedParamAction);
 
+  store.dispatch(searchedParamAction);
+  store.dispatch({ type: 'SEARCH_EPISODES_REQUEST' });
+  
   return api.searchShow(url, action.body)
     .then(result => {
       return result.Episodes.map(e => {
@@ -27,17 +26,11 @@ export const searchEpisodeApiMiddleware = (store) => (next) => (action) => {
     })
     .then(promiseArray => Promise.all(promiseArray))
     .then(result => {
-      const setEpisodeAction = setEpisodes(result);
-      store.dispatch(setEpisodeAction);
+      store.dispatch({ type: 'SEARCH_EPISODES_SUCCESS', payload: result });
     })
     .catch(error => { 
-      const showErrorAction = showError(error.message);
-      store.dispatch(showErrorAction);
+      store.dispatch({type: 'SEARCH_EPISODES_FAILURE', payload: error});
     })
-    .finally(() => { 
-      const hideSpinnerAction = hideSpinner();
-      store.dispatch(hideSpinnerAction);
-    });
 }
 
 export default searchEpisodeApiMiddleware;

@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore, applyMiddleware, compose} from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { apiMiddleware } from 'redux-api-middleware';
 import {Provider} from 'react-redux';
 import { reducers, initialState} from 'redux/reducers';
 import './sass/index.css';
@@ -11,16 +12,19 @@ const enhancers = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
+const createStoreWithMiddleware = applyMiddleware(apiMiddleware)(createStore);
 
-const store = createStore(
-  reducers,
-  initialState,
-  applyMiddleware(
-    loggingMiddleware,
-    searchEpisodeApiMiddleware
-  ),
-  enhancers
-);
+const store = createStoreWithMiddleware(reducers, initialState);
+
+// const store = createStore(
+//   reducers,
+//   initialState,
+//   applyMiddleware(
+//     loggingMiddleware,
+//     searchEpisodeApiMiddleware
+//   ),
+//   enhancers
+// );
 
 
 ReactDOM.render(
